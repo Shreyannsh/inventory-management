@@ -44,16 +44,22 @@ export default function InventoryPage() {
         </thead>
         <tbody>
           {inventoryList?.map((item, index) => (
-            <tr>
+            <tr key={item._id}>
               <td>{index + 1}</td>
               <td>{item.name}</td>
               <td>{item.price}</td>
               <td>{item.quantity}</td>
               <td>{item.category}</td>
-              <button onClick={() => dispatch(removeItem(item._id))}>
-                Delete
-              </button>
-              <button onClick={() => editFunction(item._id)}>Edit</button>
+              <td>
+                {" "}
+                <button onClick={() => dispatch(removeItem(item._id))}>
+                  Delete
+                </button>
+              </td>
+              <td>
+                {" "}
+                <button onClick={() => editFunction(item._id)}>Edit</button>
+              </td>
             </tr>
           ))}
         </tbody>

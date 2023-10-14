@@ -68,9 +68,9 @@ export default function AddItem(props) {
     return null;
   }
 
-  useEffect(() => {
-    setNewItems(selectedItem);
-  }, []);
+  // useEffect(() => {
+  //   setNewItems(selectedItem);
+  // }, []);
 
   return (
     <div className="parent">
@@ -122,7 +122,9 @@ export default function AddItem(props) {
           >
             <option value="">select </option>
             {categoryList.map((cat) => (
-              <option>{cat}</option>
+              <option key={cat} value={cat}>
+                {cat}
+              </option>
             ))}
             <option value="other">other</option>
           </select>
