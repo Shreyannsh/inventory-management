@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import AddItem from "../../modals/addItem/addItem";
 import { useDispatch, useSelector } from "react-redux";
-import { editItem, fetchItems, removeItem } from "../../redux/actions";
+import { fetchItems, removeItem } from "../../redux/actions";
 
 export default function InventoryPage() {
   const [show, setShow] = useState(false);
@@ -9,7 +9,6 @@ export default function InventoryPage() {
   const [itemId, setItemId] = useState("");
   const dispatch = useDispatch();
   const inventoryList = useSelector((state) => state.inventory);
-  // console.log(inventoryList);
 
   const editFunction = (itemId) => {
     setShow(true);
@@ -47,7 +46,7 @@ export default function InventoryPage() {
             <tr key={item._id}>
               <td>{index + 1}</td>
               <td>{item.name}</td>
-              <td>{item.price}</td>
+              <td>&#8377; {item.price}</td>
               <td>{item.quantity}</td>
               <td>{item.category}</td>
               <td>

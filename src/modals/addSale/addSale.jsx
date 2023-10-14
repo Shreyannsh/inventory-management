@@ -3,6 +3,8 @@ import "./addSale.css";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 
+import { addSale } from "../../redux/actions";
+
 export default function AddSales(props) {
   const dispatch = useDispatch();
 
@@ -13,7 +15,7 @@ export default function AddSales(props) {
   });
 
   const addFunction = () => {
-    //dispatch({});
+    dispatch(addSale(newSale));
     props.onClose();
   };
 
@@ -27,7 +29,7 @@ export default function AddSales(props) {
         <span onClick={() => props.onClose()}>X</span>
 
         <label htmlFor="itemName">
-          Item name
+          Sold Item
           <input
             id="itemName"
             type="text"

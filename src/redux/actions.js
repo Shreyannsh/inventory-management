@@ -51,6 +51,7 @@ export const removeItem = (itemId) => async (dispatch) => {
 
 export const editItem = (itemId, updatedItem) => async (dispatch) => {
   try {
+    console.log(itemId, updatedItem);
     const response = await axios.post(
       `https://inventory-backend-rho.vercel.app/v1/api/items/${itemId}/update`,
       {
@@ -59,6 +60,32 @@ export const editItem = (itemId, updatedItem) => async (dispatch) => {
     );
     console.log(response);
     dispatch({ type: UPDATE_ITEM, payload: response.data.data });
+  } catch (error) {
+    console.log(error);
+    dispatch({ type: ERROR, payload: error });
+  }
+};
+
+export const fetchSales = () => async (dispatch) => {
+  try {
+    const response = await axios.get(
+      "https://inventory-backend-rho.vercel.app/v1/api/sales/sales"
+    );
+    console.log(response);
+    dispatch({ type: FETCH_SALES, payload: response.data.data });
+  } catch (error) {
+    dispatch({ type: ERROR, payload: error });
+  }
+};
+
+export const addSale = (newSale) => async (dispatch) => {
+  try {
+    const response = await axios.post(
+      "https://inventory-backend-rho.vercel.app/v1/api/sales/add-sale",
+      { ...newSale }
+    );
+
+    dispatch({ type: ADD_SALE, payload: response.data.data });
   } catch (error) {
     dispatch({ type: ERROR, payload: error });
   }

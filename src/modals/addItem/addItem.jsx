@@ -18,29 +18,31 @@ export default function AddItem(props) {
   ]);
 
   const [newItems, setNewItems] = useState({
-    itemName: "",
+    name: "",
     price: 0,
     quantity: 0,
     category: "",
   });
-
+  console.log(newItems);
   const selectedItem = inventoryList.find((item) => item._id === props.itemId);
 
+  console.log(selectedItem);
+
+  const existingItem = inventoryList.find(
+    (item) => item.name === newItems.itemName
+  );
+
+  const existingCategory = categoryList.find(
+    (item) => item === newItems.category
+  );
+
   const addFunction = () => {
-    const existingItem = inventoryList.find(
-      (item) => item.name === newItems.itemName
-    );
-
-    const existingCategory = categoryList.find(
-      (item) => item === newItems.category
-    );
-
     if (existingItem) {
       console.log("the item already exist");
     } else {
       dispatch(addItem(newItems));
       setOtherCat(false);
-      if (existingCategory) {
+      if (!existingCategory) {
         setCategoryList([...categoryList, newItems.category]);
       }
       props.onClose();
@@ -53,7 +55,9 @@ export default function AddItem(props) {
       console.log("same as before");
     } else {
       dispatch(editItem(props.itemId, newItems));
-      setCategoryList([...categoryList, newItems.category]);
+      if (!existingCategory) {
+        setCategoryList([...categoryList, newItems.category]);
+      }
       props.onClose();
       props.closeEditMode();
     }
@@ -64,13 +68,20 @@ export default function AddItem(props) {
     setOtherCat(false);
   };
 
+  const initialValue = () => {
+    if (props.edit) {
+      setNewItems(selectedItem);
+      console.log("got it");
+    }
+  };
+
+  useEffect(() => {
+    initialValue();
+  }, [props.edit]);
+
   if (!props.show) {
     return null;
   }
-
-  // useEffect(() => {
-  //   setNewItems(selectedItem);
-  // }, []);
 
   return (
     <div className="parent">
@@ -83,10 +94,8 @@ export default function AddItem(props) {
           <input
             id="itemName"
             type="text"
-            value={newItems.itemName}
-            onChange={(e) =>
-              setNewItems({ ...newItems, itemName: e.target.value })
-            }
+            value={newItems.name}
+            onChange={(e) => setNewItems({ ...newItems, name: e.target.value })}
           />
         </label>
         <label htmlFor="price">

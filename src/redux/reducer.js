@@ -39,7 +39,7 @@ const reducer = (state = initialState, action) => {
       return { ...state, sales: action.payload };
 
     case ADD_SALE:
-      return { ...state, sales: [...state, action.payload] };
+      return { ...state, sales: [...state.sales, action.payload] };
 
     default:
       return state;
