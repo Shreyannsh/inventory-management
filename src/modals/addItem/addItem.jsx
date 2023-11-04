@@ -1,39 +1,34 @@
-import "./addItem.css";
+import "../../commonCssForModal.css";
 
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addItem, editItem } from "../../redux/actions";
+import { addItem, editItem, fetchItems } from "../../redux/actions";
 
 export default function AddItem(props) {
   const dispatch = useDispatch();
-  const inventoryList = useSelector((state) => state.inventory);
-  const [otherCat, setOtherCat] = useState(false);
-
-  const [categoryList, setCategoryList] = useState([
-    "shoes",
-    "clothes",
-    "watches",
-    "accessories",
-    "jewellery",
-  ]);
 
   const [newItems, setNewItems] = useState({
-    name: "",
-    price: 0,
+    itemName: "",
     quantity: 0,
+    price: 0,
     category: "",
   });
-  console.log(newItems);
-  const selectedItem = inventoryList.find((item) => item._id === props.itemId);
 
-  console.log(selectedItem);
+  const inventoryList = useSelector((state) => state.inventory);
+
+  const [otherCat, setOtherCat] = useState(false);
+
+  const categoryList = inventoryList.reduce((acc, crr) => {
+    if (!acc?.includes(crr.category)) {
+      acc = [...acc, crr.category];
+    }
+    return acc;
+  }, []);
+
+  const selectedItem = inventoryList.find((item) => item._id === props.itemId);
 
   const existingItem = inventoryList.find(
     (item) => item.name === newItems.itemName
-  );
-
-  const existingCategory = categoryList.find(
-    (item) => item === newItems.category
   );
 
   const addFunction = () => {
@@ -42,22 +37,27 @@ export default function AddItem(props) {
     } else {
       dispatch(addItem(newItems));
       setOtherCat(false);
-      if (!existingCategory) {
-        setCategoryList([...categoryList, newItems.category]);
-      }
+      setNewItems({
+        itemName: "",
+        quantity: 0,
+        price: 0,
+        category: "",
+      });
       props.onClose();
     }
   };
 
   const editFunction = () => {
-    console.log(selectedItem);
     if (selectedItem === newItems) {
       console.log("same as before");
     } else {
       dispatch(editItem(props.itemId, newItems));
-      if (!existingCategory) {
-        setCategoryList([...categoryList, newItems.category]);
-      }
+      setNewItems({
+        itemName: "",
+        quantity: 0,
+        price: 0,
+        category: "",
+      });
       props.onClose();
       props.closeEditMode();
     }
@@ -65,13 +65,24 @@ export default function AddItem(props) {
 
   const closeFunction = () => {
     props.onClose();
+    props.closeEditMode();
     setOtherCat(false);
+    setNewItems({
+      itemName: "",
+      quantity: 0,
+      price: 0,
+      category: "",
+    });
   };
 
   const initialValue = () => {
     if (props.edit) {
-      setNewItems(selectedItem);
-      console.log("got it");
+      setNewItems({
+        itemName: selectedItem.name,
+        quantity: selectedItem.quantity,
+        price: selectedItem.price,
+        category: selectedItem.category,
+      });
     }
   };
 
@@ -86,43 +97,43 @@ export default function AddItem(props) {
   return (
     <div className="parent">
       <div className="child">
-        <h2>{props.edit ? "EDIT " : "ADD"} ITEM</h2>
+        <h2 className="modalTitle">{props.edit ? "EDIT " : "ADD"} ITEM</h2>
 
-        <span onClick={() => closeFunction()}>X</span>
-        <label htmlFor="itemName">
-          Item name
+        <span className="closeBtn" onClick={() => closeFunction()}>
+          X
+        </span>
+        <div className="inputSection">
+          <p>Item name</p>
           <input
-            id="itemName"
+            className="Addinput"
             type="text"
-            value={newItems.name}
-            onChange={(e) => setNewItems({ ...newItems, name: e.target.value })}
+            value={newItems.itemName}
+            onChange={(e) =>
+              setNewItems({ ...newItems, itemName: e.target.value })
+            }
           />
-        </label>
-        <label htmlFor="price">
-          Price
+          <p>Price</p>
           <input
-            id="price"
+            className="Addinput"
             type="number"
             value={newItems.price}
             onChange={(e) =>
-              setNewItems({ ...newItems, price: e.target.value })
+              setNewItems({ ...newItems, price: Number(e.target.value) })
             }
           />
-        </label>
-        <label htmlFor="quantity">
-          Quantity
+          <p>Quantity</p>
           <input
-            id="quantity"
+            className="Addinput"
             type="number"
             value={newItems.quantity}
             onChange={(e) =>
-              setNewItems({ ...newItems, quantity: e.target.value })
+              setNewItems({ ...newItems, quantity: Number(e.target.value) })
             }
           />
-        </label>
-        <label>
-          Category
+          <p>Category</p>
           <select
+            className="AddSelectInput"
+            value={newItems.category}
             onChange={(e) =>
               e.target.value === "other"
                 ? setOtherCat(true)
@@ -137,18 +148,18 @@ export default function AddItem(props) {
             ))}
             <option value="other">other</option>
           </select>
-        </label>
-        {otherCat ? (
-          <input
-            type="text"
-            placeholder="specify category"
-            onChange={(e) =>
-              setNewItems({ ...newItems, category: e.target.value })
-            }
-          />
-        ) : null}
-
+          {otherCat ? (
+            <input
+              type="text"
+              placeholder="specify category"
+              onChange={(e) =>
+                setNewItems({ ...newItems, category: e.target.value })
+              }
+            />
+          ) : null}
+        </div>
         <button
+          className="addBtn"
           onClick={() => {
             props.edit ? editFunction() : addFunction();
           }}

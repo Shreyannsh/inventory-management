@@ -1,0 +1,56 @@
+.addBtnAndFilter {
+  display: flex;
+  justify-content: space-between;
+  padding: 0rem 0.5rem;
+}
+
+.filterOption {
+  margin-top: 5px;
+}
+
+.input {
+  margin-left: 0.5rem;
+  margin-right: 1rem;
+  border-radius: 5px;
+  border: transparent;
+  padding: 5px;
+  font-size: 13px;
+}
+
+.addSaleBtn {
+  padding: 7px 5px;
+  font-weight: bolder;
+  font-size: 1.2rem;
+  border-radius: 5px;
+  border: transparent;
+  box-shadow: 1px 2px 2px 1px rgb(0, 0, 0, 0.6);
+  background-color: rgb(11, 170, 11);
+  color: aliceblue;
+  margin-bottom: 1rem;
+  cursor: pointer;
+}
+
+.filterBtn {
+  font-size: 15px;
+  border-radius: 4px;
+  border: transparent;
+  padding: 3px 10px;
+  background-color: var(--dark-grey);
+  color: aliceblue;
+  margin-right: 5px;
+  cursor: pointer;
+}
+
+.filterBtn:hover {
+  background-color: aliceblue;
+  color: var(--dark-grey);
+}
+
+.clearBtn {
+  font-size: 13px;
+  border-radius: 4px;
+  border: 1px solid black;
+  padding: 4px 10px;
+  margin-left: 5px;
+  cursor: pointer;
+}

@@ -1,0 +1,79 @@
+.mainPage {
+  position: relative;
+}
+
+table {
+  text-align: left;
+  font-size: 1rem;
+  margin-bottom: 2rem;
+  border-collapse: collapse;
+  width: auto;
+  word-break: break-all;
+  word-wrap: break-word;
+}
+
+th {
+  border: 2px solid;
+  padding: 10px 20px;
+  font-weight: bolder;
+  font-size: larger;
+}
+
+td {
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  padding: 10px 20px;
+  border: 2px solid;
+}
+
+.icon {
+  font-size: 1.3rem;
+  color: rgb(206, 2, 2);
+  border: transparent;
+  border-radius: 5px;
+  padding: 3px 3px 0px 3px;
+  box-shadow: 0px 0px 5px 1px rgb(0, 0, 0, 0.6);
+  cursor: pointer;
+}
+
+.icon:hover {
+  background-color: azure;
+  color: rgb(255, 0, 0);
+}
+
+.iconBtn {
+  border: transparent;
+  padding: 12px;
+}
+
+.title {
+  margin: 1rem 0rem 2.5rem -4rem;
+  font-weight: bolder;
+  font-size: 2rem;
+  position: relative;
+}
+
+.inventoryIcon {
+  position: relative;
+  top: 5px;
+}
+
+.addBtn {
+  display: flex;
+  justify-content: flex-start;
+  padding: 7px 5px;
+  font-weight: bolder;
+  font-size: 1.2rem;
+  border-radius: 5px;
+  border: transparent;
+  box-shadow: 1px 2px 2px 1px rgb(0, 0, 0, 0.6);
+  background-color: rgb(11, 170, 11);
+  color: aliceblue;
+  margin-bottom: 1rem;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.addBtn:hover {
+  background-color: rgb(20, 124, 20);
+}

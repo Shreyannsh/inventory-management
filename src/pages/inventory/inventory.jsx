@@ -1,4 +1,12 @@
+import "./inventory.css";
+import "../../commonCss.css";
+
 import { useEffect, useState } from "react";
+import { RiDeleteBinLine } from "react-icons/ri";
+import { GrEdit } from "react-icons/gr";
+import { AiOutlineAppstoreAdd } from "react-icons/ai";
+import { MdOutlineInventory } from "react-icons/md";
+
 import AddItem from "../../modals/addItem/addItem";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchItems, removeItem } from "../../redux/actions";
@@ -21,9 +29,18 @@ export default function InventoryPage() {
   }, []);
 
   return (
-    <div>
-      <h1>INVENTORY</h1>
-      <button onClick={() => setShow(true)}>Add Item</button>
+    <div className="mainPage">
+      <div className="title">
+        {" "}
+        INVENTORY LIST{" "}
+        <span className="inventoryIcon">
+          <MdOutlineInventory />
+        </span>
+      </div>
+      <button className="addBtn" onClick={() => setShow(true)}>
+        {" "}
+        <AiOutlineAppstoreAdd /> Add Item
+      </button>
       <AddItem
         onClose={() => setShow(false)}
         closeEditMode={() => setEdit(false)}
@@ -47,17 +64,21 @@ export default function InventoryPage() {
               <td>{index + 1}</td>
               <td>{item.name}</td>
               <td>&#8377; {item.price}</td>
-              <td>{item.quantity}</td>
+              <td>{item.quantity} units</td>
               <td>{item.category}</td>
-              <td>
+              <td className="iconBtn">
                 {" "}
-                <button onClick={() => dispatch(removeItem(item._id))}>
-                  Delete
+                <button className="icon" onClick={() => editFunction(item._id)}>
+                  <GrEdit />
                 </button>
               </td>
-              <td>
-                {" "}
-                <button onClick={() => editFunction(item._id)}>Edit</button>
+              <td className="iconBtn">
+                <button
+                  className="icon"
+                  onClick={() => dispatch(removeItem(item._id))}
+                >
+                  <RiDeleteBinLine />
+                </button>
               </td>
             </tr>
           ))}

@@ -1,3 +1,5 @@
+import "./reports.css";
+
 import { useState } from "react";
 import InventoryList from "./inventoryList";
 import SalesList from "./salesList";
@@ -18,9 +20,13 @@ export default function ReportsPage() {
 
   return (
     <div>
-      <h1>REPORT</h1>
-      <button onClick={() => inventoryFunction()}>Inventory Data</button>
-      <button onClick={() => salesFunction()}>Sales Data</button>
+      <h1>REPORTS</h1>
+      <button className="reportOption" onClick={() => inventoryFunction()}>
+        Inventory Data
+      </button>
+      <button className="reportOption" onClick={() => salesFunction()}>
+        Sales Data
+      </button>
 
       <InventoryList showInventory={showInventory} />
       <SalesList showSales={showSales} />
