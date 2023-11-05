@@ -21,5 +21,16 @@
 
 .link:hover {
   background-color: var(--dark-blue);
-  color: var(--steel-grey);
+  color: aliceblue;
+}
+
+.activeLink {
+  background-color: var(--dark-blue);
+  color: aliceblue;
+  text-decoration: none;
+  font-size: 2rem;
+  font-weight: bolder;
+  margin: 4rem 0rem;
+  border-radius: 5px;
+  padding: 5px 10px;
 }

@@ -12,6 +12,7 @@ const initialState = {
   inventory: [],
   sales: [],
   isLoading: false,
+  isActive: "",
 };
 
 const reducer = (state = initialState, action) => {
@@ -57,6 +58,9 @@ const reducer = (state = initialState, action) => {
 
     case LOADING:
       return { ...state, isLoading: true };
+
+    case "IS_ACTIVE":
+      return { ...state, isActive: action.payload };
 
     default:
       return state;

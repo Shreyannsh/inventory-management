@@ -55,6 +55,7 @@ export default function SalesPage() {
 
   useEffect(() => {
     dispatch(fetchSales());
+    dispatch({ type: "IS_ACTIVE", payload: "sales" });
   }, []);
 
   useEffect(() => {

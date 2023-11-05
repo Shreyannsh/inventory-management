@@ -26,7 +26,12 @@ export default function InventoryPage() {
 
   useEffect(() => {
     dispatch(fetchItems());
+    dispatch({ type: "IS_ACTIVE", payload: "inventory" });
   }, []);
+
+  // useEffect(() => {
+  //   dispatch({ type: "IS_ACTIVE", payload: "inventory" });
+  // }, []);
 
   return (
     <div className="mainPage">

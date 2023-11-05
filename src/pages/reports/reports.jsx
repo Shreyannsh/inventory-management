@@ -1,10 +1,12 @@
 import "./reports.css";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import InventoryList from "./inventoryList";
 import SalesList from "./salesList";
+import { useDispatch } from "react-redux";
 
 export default function ReportsPage() {
+  const dispatch = useDispatch();
   const [showInventory, setShowInventory] = useState(false);
   const [showSales, setShowSales] = useState(false);
 
@@ -17,6 +19,10 @@ export default function ReportsPage() {
     setShowSales(!showSales);
     setShowInventory(false);
   };
+
+  useEffect(() => {
+    dispatch({ type: "IS_ACTIVE", payload: "report" });
+  }, []);
 
   return (
     <div>
