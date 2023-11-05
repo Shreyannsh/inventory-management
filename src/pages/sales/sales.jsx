@@ -2,11 +2,13 @@ import "../../commonCss.css";
 import "./sales.css";
 
 import { useEffect, useState } from "react";
-import AddSales from "../../modals/addSale/addSale";
-import { fetchSales } from "../../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { GiReceiveMoney } from "react-icons/gi";
 import { AiOutlineAppstoreAdd } from "react-icons/ai";
+import { toast } from "react-toastify";
+
+import AddSales from "../../modals/addSale/addSale";
+import { fetchSales } from "../../redux/actions";
 
 export default function SalesPage() {
   const dispatch = useDispatch();
@@ -21,23 +23,29 @@ export default function SalesPage() {
     to: "",
   });
 
-  // console.log(filterDates);
-
   const total_revenue = salesList.reduce(
     (acc, crr) => acc + crr.price * crr.quantity,
     0
   );
 
   const filterByDateFunction = () => {
-    const filteredByDate = sale.filter(
-      (sale) =>
-        sale.createdAt.split("T")[0] >= filterDates.from &&
-        sale.createdAt.split("T")[0] <= filterDates.to
-      // new Date(sale.createdAt) >= new Date(filterDates.from) &&
-      // new Date(sale.createdAt) <= new Date(filterDates.to)
-    );
-    setClearBtnDisable(false);
-    setSalesList(filteredByDate);
+    if (filterDates.from === "" && filterDates.to === "") {
+      toast.error("Please enter dates !");
+    } else if (filterDates.from === "") {
+      toast.error("From value can not be empty !");
+    } else if (filterDates.to === "") {
+      toast.error("To value can not be empty !");
+    } else {
+      const filteredByDate = sale.filter(
+        (sale) =>
+          sale.createdAt.split("T")[0] >= filterDates.from &&
+          sale.createdAt.split("T")[0] <= filterDates.to
+        // new Date(sale.createdAt) >= new Date(filterDates.from) &&
+        // new Date(sale.createdAt) <= new Date(filterDates.to)
+      );
+      setClearBtnDisable(false);
+      setSalesList(filteredByDate);
+    }
   };
 
   const clearDateFunction = () => {

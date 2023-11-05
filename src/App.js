@@ -1,5 +1,8 @@
 import "./App.css";
 
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 import { Route, Routes } from "react-router-dom";
 
 import InventoryPage from "./pages/inventory/inventory";
@@ -7,10 +10,27 @@ import SalesPage from "./pages/sales/sales";
 import ReportsPage from "./pages/reports/reports";
 import Navbar from "./components/navbar/navbar";
 import Header from "./components/header/header";
+import Loader from "./components/loader/loader";
+import { useSelector } from "react-redux";
 
 function App() {
+  const loading = useSelector((state) => state.isLoading);
+
   return (
     <div className="App">
+      <ToastContainer
+        position="top-center"
+        autoClose={1200}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
+      <Loader loading={loading} />
       <Header />
       <Navbar />
       <div className="allRoutes">

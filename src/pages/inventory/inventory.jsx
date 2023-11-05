@@ -59,29 +59,38 @@ export default function InventoryPage() {
           </tr>
         </thead>
         <tbody>
-          {inventoryList?.map((item, index) => (
-            <tr key={item._id}>
-              <td>{index + 1}</td>
-              <td>{item.name}</td>
-              <td>&#8377; {item.price}</td>
-              <td>{item.quantity} units</td>
-              <td>{item.category}</td>
-              <td className="iconBtn">
-                {" "}
-                <button className="icon" onClick={() => editFunction(item._id)}>
-                  <GrEdit />
-                </button>
-              </td>
-              <td className="iconBtn">
-                <button
-                  className="icon"
-                  onClick={() => dispatch(removeItem(item._id))}
-                >
-                  <RiDeleteBinLine />
-                </button>
-              </td>
+          {inventoryList.length <= 0 ? (
+            <tr>
+              <td>Please add item</td>
             </tr>
-          ))}
+          ) : (
+            inventoryList?.map((item, index) => (
+              <tr key={item._id}>
+                <td>{index + 1}</td>
+                <td>{item.name}</td>
+                <td>&#8377; {item.price}</td>
+                <td>{item.quantity} units</td>
+                <td>{item.category}</td>
+                <td className="iconBtn">
+                  {" "}
+                  <button
+                    className="icon"
+                    onClick={() => editFunction(item._id)}
+                  >
+                    <GrEdit />
+                  </button>
+                </td>
+                <td className="iconBtn">
+                  <button
+                    className="icon"
+                    onClick={() => dispatch(removeItem(item._id))}
+                  >
+                    <RiDeleteBinLine />
+                  </button>
+                </td>
+              </tr>
+            ))
+          )}
         </tbody>
       </table>
     </div>

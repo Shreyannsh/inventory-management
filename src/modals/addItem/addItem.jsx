@@ -2,7 +2,9 @@ import "../../commonCssForModal.css";
 
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addItem, editItem, fetchItems } from "../../redux/actions";
+import { toast } from "react-toastify";
+
+import { addItem, editItem } from "../../redux/actions";
 
 export default function AddItem(props) {
   const dispatch = useDispatch();
@@ -32,8 +34,12 @@ export default function AddItem(props) {
   );
 
   const addFunction = () => {
-    if (existingItem) {
-      console.log("the item already exist");
+    const values = Object.values(newItems);
+
+    if (values.includes("") || values.includes(0) || values.includes("other")) {
+      toast.error("all fields are neccessary!");
+    } else if (existingItem) {
+      toast.warning("the item already exist!");
     } else {
       dispatch(addItem(newItems));
       setOtherCat(false);
@@ -49,7 +55,7 @@ export default function AddItem(props) {
 
   const editFunction = () => {
     if (selectedItem === newItems) {
-      console.log("same as before");
+      toast.warning("Item already exist");
     } else {
       dispatch(editItem(props.itemId, newItems));
       setNewItems({
@@ -86,6 +92,16 @@ export default function AddItem(props) {
     }
   };
 
+  const setValueFunction = (e) => {
+    setNewItems({ ...newItems, category: e.target.value });
+    setOtherCat(false);
+  };
+
+  const otherCategoryFunction = (e) => {
+    setNewItems({ ...newItems, category: e.target.value });
+    setOtherCat(true);
+  };
+
   useEffect(() => {
     initialValue();
   }, [props.edit]);
@@ -97,11 +113,14 @@ export default function AddItem(props) {
   return (
     <div className="parent">
       <div className="child">
-        <h2 className="modalTitle">{props.edit ? "EDIT " : "ADD"} ITEM</h2>
+        <div className="modalHeader">
+          {" "}
+          <h2 className="modalTitle">{props.edit ? "EDIT " : "ADD"} ITEM</h2>
+          <span className="closeBtn" onClick={() => closeFunction()}>
+            X
+          </span>
+        </div>
 
-        <span className="closeBtn" onClick={() => closeFunction()}>
-          X
-        </span>
         <div className="inputSection">
           <p>Item name</p>
           <input
@@ -136,8 +155,8 @@ export default function AddItem(props) {
             value={newItems.category}
             onChange={(e) =>
               e.target.value === "other"
-                ? setOtherCat(true)
-                : setNewItems({ ...newItems, category: e.target.value })
+                ? otherCategoryFunction(e)
+                : setValueFunction(e)
             }
           >
             <option value="">select </option>
@@ -148,8 +167,10 @@ export default function AddItem(props) {
             ))}
             <option value="other">other</option>
           </select>
+          <p>{otherCat ? "Add category" : null} </p>
           {otherCat ? (
             <input
+              className="Addinput otherCat"
               type="text"
               placeholder="specify category"
               onChange={(e) =>

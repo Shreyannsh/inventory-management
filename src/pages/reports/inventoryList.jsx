@@ -41,17 +41,25 @@ export default function InventoryList(props) {
           </tr>
         </thead>
         <tbody>
-          {updatedInventory?.map((item, index) => (
-            <tr key={item._id}>
-              <td>{index + 1}</td>
-              <td>{item.name}</td>
-              <td>&#8377; {item.price}</td>
-              <td>
-                {item.quantity > 0 ? `${item.quantity} units` : "Out of Stock"}
-              </td>
-              <td>{item.category}</td>
+          {updatedInventory.length <= 0 ? (
+            <tr>
+              <td>No data to show !</td>
             </tr>
-          ))}
+          ) : (
+            updatedInventory?.map((item, index) => (
+              <tr key={item._id}>
+                <td>{index + 1}</td>
+                <td>{item.name}</td>
+                <td>&#8377; {item.price}</td>
+                <td>
+                  {item.quantity > 0
+                    ? `${item.quantity} units`
+                    : "Out of Stock"}
+                </td>
+                <td>{item.category}</td>
+              </tr>
+            ))
+          )}
         </tbody>
       </table>
     </div>

@@ -1,4 +1,5 @@
 import axios from "axios";
+import { toast } from "react-toastify";
 
 import {
   ADD_ITEM,
@@ -8,10 +9,12 @@ import {
   REMOVE_ITEM,
   FETCH_INVENTORY,
   ERROR,
+  LOADING,
 } from "./const.js";
 
 export const fetchItems = () => async (dispatch) => {
   try {
+    dispatch({ type: LOADING });
     const response = await axios.get(
       "https://inventory-backend-rho.vercel.app/v1/api/items/items"
     );
@@ -25,24 +28,30 @@ export const fetchItems = () => async (dispatch) => {
 
 export const addItem = (newItems) => async (dispatch) => {
   try {
+    dispatch({ type: LOADING });
     const response = await axios.post(
       "https://inventory-backend-rho.vercel.app/v1/api/items/add-item",
       newItems
     );
-    dispatch({ type: ADD_ITEM, payload: response.data.data });
-    //if(response.success)
+    if (response.status === 200) {
+      dispatch({ type: ADD_ITEM, payload: response.data.data });
+      toast.success("Item added Successfully!");
+    }
   } catch (error) {
-    console.log(error);
     dispatch({ type: ERROR, payload: error });
   }
 };
 
 export const removeItem = (itemId) => async (dispatch) => {
   try {
+    dispatch({ type: LOADING });
     const response = await axios.delete(
       `https://inventory-backend-rho.vercel.app/v1/api/items/${itemId}`
     );
-    dispatch({ type: REMOVE_ITEM, payload: itemId });
+    if (response.status === 204) {
+      dispatch({ type: REMOVE_ITEM, payload: itemId });
+      toast.success("Item removed Successfully!");
+    }
   } catch (error) {
     dispatch({ type: ERROR, payload: error });
   }
@@ -50,14 +59,17 @@ export const removeItem = (itemId) => async (dispatch) => {
 
 export const editItem = (itemId, updatedItem) => async (dispatch) => {
   try {
+    dispatch({ type: LOADING });
     const response = await axios.post(
       `https://inventory-backend-rho.vercel.app/v1/api/items/${itemId}/update`,
       {
         ...updatedItem,
       }
     );
-
-    dispatch({ type: UPDATE_ITEM, payload: response.data.data });
+    if (response.status === 200) {
+      dispatch({ type: UPDATE_ITEM, payload: response.data.data });
+      toast.success("Item edited Successfully!");
+    }
   } catch (error) {
     dispatch({ type: ERROR, payload: error });
   }
@@ -65,11 +77,13 @@ export const editItem = (itemId, updatedItem) => async (dispatch) => {
 
 export const fetchSales = () => async (dispatch) => {
   try {
+    dispatch({ type: LOADING });
     const response = await axios.get(
       "https://inventory-backend-rho.vercel.app/v1/api/sales/sales"
     );
-
-    dispatch({ type: FETCH_SALES, payload: response.data.data });
+    if (response.status === 200) {
+      dispatch({ type: FETCH_SALES, payload: response.data.data });
+    }
   } catch (error) {
     dispatch({ type: ERROR, payload: error });
   }
@@ -77,12 +91,15 @@ export const fetchSales = () => async (dispatch) => {
 
 export const addSale = (newSale) => async (dispatch) => {
   try {
+    dispatch({ type: LOADING });
     const response = await axios.post(
       "https://inventory-backend-rho.vercel.app/v1/api/sales/add-sale",
       { ...newSale }
     );
-
-    dispatch({ type: ADD_SALE, payload: response.data.data });
+    if (response.status === 200) {
+      dispatch({ type: ADD_SALE, payload: response.data.data });
+      toast.success("Sale added Successfully!");
+    }
   } catch (error) {
     dispatch({ type: ERROR, payload: error });
   }

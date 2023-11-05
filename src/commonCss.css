@@ -70,6 +70,7 @@ td {
   background-color: rgb(11, 170, 11);
   color: aliceblue;
   margin-bottom: 1rem;
+  margin-top: 0.5rem;
   margin-left: 10px;
   cursor: pointer;
 }

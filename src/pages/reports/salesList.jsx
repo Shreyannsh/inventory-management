@@ -6,8 +6,6 @@ export default function SalesList(props) {
   const dispatch = useDispatch();
   const salesList = useSelector((state) => state.sales);
 
-  // console.log(salesList);
-
   const total_revenue = salesList?.reduce(
     (acc, crr) => acc + crr.price * crr.quantity,
     0
