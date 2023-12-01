@@ -38,10 +38,12 @@ export default function InventoryPage() {
           <MdOutlineInventory />
         </span>
       </div>
-      <button className="addBtn" onClick={() => setShow(true)}>
-        {" "}
-        <AiOutlineAppstoreAdd /> Add Item
-      </button>
+      <div className="addBtnSection">
+        <button className="addBtn" onClick={() => setShow(true)}>
+          {" "}
+          <AiOutlineAppstoreAdd /> Add Item
+        </button>
+      </div>
       <AddItem
         onClose={() => setShow(false)}
         closeEditMode={() => setEdit(false)}

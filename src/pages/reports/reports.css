@@ -1,7 +1,25 @@
 .reportOption {
-  font-size: 1.4rem;
-  margin: 1.5rem;
+  font-size: 2rem;
+  margin-right: 4.5rem;
+  margin-left: 1rem;
   margin-top: 0.5rem;
+  margin-bottom: 2.5rem;
+  padding: 6px;
+  border-radius: 5px;
+  font-weight: 500;
+  border: transparent;
+  box-shadow: 1px 2px 2px 1px rgb(0, 0, 0, 0.6);
+  background-color: var(--light-blue);
+  color: aliceblue;
+  cursor: pointer;
+}
+
+.isOpen {
+  font-size: 2rem;
+  margin-right: 4.5rem;
+  margin-left: 1rem;
+  margin-top: 0.5rem;
+  margin-bottom: 2.5rem;
   padding: 6px;
   border-radius: 5px;
   font-weight: 500;
@@ -14,4 +32,44 @@
 
 .reportOption:hover {
   background-color: var(--dark-blue);
+}
+
+.emptyMsg {
+  margin-top: 5rem;
+  font-size: 26px;
+  /* margin-right: 1.5rem; */
+}
+
+@media (max-width: 885px) {
+  .reportOption {
+    font-size: 1.4rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .isOpen {
+    font-size: 1.4rem;
+    margin-bottom: 1.5rem;
+  }
+}
+
+@media (max-width: 558px) {
+  .reportOption {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+    margin-right: 2rem;
+    margin-left: 2rem;
+  }
+
+  .isOpen {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+    margin-right: 2rem;
+    margin-left: 2rem;
+  }
+
+  .emptyMsg {
+    margin-top: 5rem;
+    font-size: 16px;
+    /* margin-right: 1.5rem; */
+  }
 }

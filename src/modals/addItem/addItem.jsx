@@ -137,7 +137,7 @@ export default function AddItem(props) {
             type="number"
             value={newItems.price}
             onChange={(e) =>
-              setNewItems({ ...newItems, price: Number(e.target.value) })
+              setNewItems({ ...newItems, price: parseInt(e.target.value) })
             }
           />
           <p>Quantity</p>
@@ -146,7 +146,7 @@ export default function AddItem(props) {
             type="number"
             value={newItems.quantity}
             onChange={(e) =>
-              setNewItems({ ...newItems, quantity: Number(e.target.value) })
+              setNewItems({ ...newItems, quantity: parseInt(e.target.value) })
             }
           />
           <p>Category</p>

@@ -2,12 +2,39 @@
   position: fixed;
   left: 0;
   right: 0;
-  justify-content: space-between;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
   text-align: left;
-  padding: 0rem 1rem;
+  padding: 0rem 0rem;
   box-shadow: 1px 2px 5px 1px rgb(0, 0, 0, 0.6);
   z-index: 9;
   margin-bottom: 2rem;
-  background-color: var(--dark-blue);
+
+  background: linear-gradient(
+    0deg,
+    rgba(29, 78, 216, 1) 0%,
+    rgba(0, 95, 149, 1) 100%
+  );
   color: aliceblue;
+}
+
+.appName {
+  margin: -0.4rem 0.5rem;
+  color: aliceblue;
+  text-decoration: none;
+}
+
+.logo {
+  height: 4rem;
+}
+
+@media (max-width: 678px) {
+  .header {
+    text-align: center;
+  }
+
+  .header h1 {
+    font-size: 1.8rem;
+  }
 }

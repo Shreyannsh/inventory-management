@@ -4,7 +4,7 @@
   align-items: center;
   position: fixed;
   inset: 0;
-  background-color: rgba(216, 216, 216, 0.8);
+  background-color: rgba(216, 216, 216, 0.5);
 }
 
 .child {
@@ -14,17 +14,17 @@
   align-items: center;
   background-color: var(--light-blue);
   text-align: left;
-  padding-left: 1rem;
-  padding-top: 1rem;
-  width: 22rem;
-  height: auto;
+  padding: 1rem;
+  max-width: 18rem;
+  width: 100%;
+  height: fit-content;
   border-radius: 10px;
   box-shadow: 1px 2px 5px 1px rgba(0, 0, 0, 0.6);
   position: relative;
-  margin-top: 1rem;
+  margin: 1rem;
 }
 
-p {
+.child p {
   text-align: left;
   font-weight: 500;
   font-size: large;
@@ -84,4 +84,5 @@ p {
   margin-top: -5px;
   width: 15.8rem;
   box-shadow: 1px 2px 2px 1px rgba(0, 0, 0, 0.6);
+  overflow-y: scroll;
 }

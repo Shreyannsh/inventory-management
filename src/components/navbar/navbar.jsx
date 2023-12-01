@@ -5,29 +5,26 @@ import { Link } from "react-router-dom";
 
 export default function Navbar() {
   const isActive = useSelector((state) => state.isActive);
-  console.log(isActive);
   return (
-    <div>
-      <nav className="navbar">
-        <Link
-          className={isActive === "inventory" ? "activeLink" : "link"}
-          to="/"
-        >
-          Inventory
-        </Link>
-        <Link
-          className={isActive === "sales" ? "activeLink" : "link"}
-          to="/sales"
-        >
-          Sales
-        </Link>
-        <Link
-          className={isActive === "report" ? "activeLink" : "link"}
-          to="/report"
-        >
-          Report
-        </Link>
-      </nav>
-    </div>
+    <nav className="navbar">
+      <Link
+        className={isActive === "inventory" ? "activeLink" : "link"}
+        to="/inventory"
+      >
+        <div className="linkText">Inventory</div>
+      </Link>
+      <Link
+        className={isActive === "sales" ? "activeLink" : "link"}
+        to="/sales"
+      >
+        <div className="linkText">Sales</div>
+      </Link>
+      <Link
+        className={isActive === "report" ? "activeLink" : "link"}
+        to="/report"
+      >
+        <div className="linkText"> Report</div>
+      </Link>
+    </nav>
   );
 }

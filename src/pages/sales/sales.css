@@ -55,3 +55,65 @@
   margin-left: 5px;
   cursor: pointer;
 }
+
+@media (max-width: 885px) {
+  .addSaleBtn {
+    padding: 3px 5px;
+    font-size: 0.8rem;
+  }
+
+  .filterBtn {
+    font-size: 15px;
+    border-radius: 4px;
+    border: transparent;
+    padding: 3px 10px;
+    background-color: var(--dark-grey);
+    color: aliceblue;
+    margin-right: 5px;
+    cursor: pointer;
+  }
+
+  .filterBtn:hover {
+    background-color: aliceblue;
+    color: var(--dark-grey);
+  }
+
+  .clearBtn {
+    font-size: 13px;
+    border-radius: 4px;
+    border: 1px solid black;
+    padding: 4px 10px;
+    margin-top: 5px;
+    margin-left: 5px;
+    cursor: pointer;
+  }
+}
+
+@media (max-width: 460px) {
+  .addBtnAndFilter {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-left: 0rem;
+  }
+
+  .addSaleBtn {
+    margin-left: -1rem;
+  }
+
+  .filterOption {
+    margin-top: 5px;
+    width: 100%;
+  }
+  .input {
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+    border-radius: 5px;
+    width: 5rem;
+  }
+
+  .clearBtn {
+    margin-top: 10px;
+    margin-left: -1rem;
+  }
+}

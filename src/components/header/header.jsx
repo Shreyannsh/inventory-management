@@ -1,9 +1,15 @@
 import "./header.css";
 
+import { Link } from "react-router-dom";
+
 function Header() {
   return (
     <div className="header">
-      <h1>Invetory Management</h1>
+      <img className="logo" src="/assets/logo.png" alt="logo-image" />
+      <Link to="/" className="appName">
+        {" "}
+        <h1>Invetory Management</h1>{" "}
+      </Link>
     </div>
   );
 }

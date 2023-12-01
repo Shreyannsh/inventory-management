@@ -9,6 +9,7 @@ import { addSale, fetchItems } from "../../redux/actions";
 export default function AddSales(props) {
   const dispatch = useDispatch();
   const inventory = useSelector((state) => state.inventory);
+  console.log(inventory);
   const [newSale, setNewSale] = useState({
     name: "",
     price: 0,
@@ -20,6 +21,17 @@ export default function AddSales(props) {
     []
   );
 
+  const addSaleValue = (e) => {
+    const selectedSoldItem = inventory.find(
+      (item) => item.name === e.target.value
+    );
+    setNewSale({
+      ...newSale,
+      name: selectedSoldItem?.name,
+      price: selectedSoldItem?.price,
+    });
+  };
+
   const selectedSoldItem = inventory.find((item) => item.name === newSale.name);
 
   const addFunction = () => {
@@ -29,6 +41,7 @@ export default function AddSales(props) {
     } else if (newSale.quantity > selectedSoldItem.quantity) {
       toast.warning("Quantity is more than available in inventory");
     } else {
+      console.log(newSale);
       dispatch(addSale(newSale));
       setNewSale({
         name: "",
@@ -37,14 +50,6 @@ export default function AddSales(props) {
       });
       props.onClose();
     }
-  };
-
-  const addSaleValue = (e) => {
-    setNewSale({
-      ...newSale,
-      name: e.target.value,
-      price: selectedSoldItem?.price,
-    });
   };
 
   const closeFunction = () => {
@@ -63,6 +68,8 @@ export default function AddSales(props) {
   if (!props.show) {
     return null;
   }
+
+  console.log(newSale);
 
   return (
     <div className="parent">
@@ -84,7 +91,7 @@ export default function AddSales(props) {
             ))}
           </select>
           <p>Price</p>
-          <div className="Addinput">{selectedSoldItem?.price} </div>
+          <div className="Addinput">{newSale?.price} </div>
           <p>Quantity</p>
           <input
             className="Addinput"
@@ -92,7 +99,7 @@ export default function AddSales(props) {
             type="number"
             value={newSale.quantity}
             onChange={(e) =>
-              setNewSale({ ...newSale, quantity: Number(e.target.value) })
+              setNewSale({ ...newSale, quantity: parseInt(e.target.value) })
             }
           />
         </div>

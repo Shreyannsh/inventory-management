@@ -12,6 +12,7 @@ import Navbar from "./components/navbar/navbar";
 import Header from "./components/header/header";
 import Loader from "./components/loader/loader";
 import { useSelector } from "react-redux";
+import HomePage from "./pages/homePage/homePage";
 
 function App() {
   const loading = useSelector((state) => state.isLoading);
@@ -35,7 +36,8 @@ function App() {
       <Navbar />
       <div className="allRoutes">
         <Routes>
-          <Route path="/" element={<InventoryPage />} />
+          <Route path="/" element={<HomePage />} />
+          <Route path="/inventory" element={<InventoryPage />} />
           <Route path="/sales" element={<SalesPage />} />
           <Route path="/report" element={<ReportsPage />} />
         </Routes>

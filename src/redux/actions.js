@@ -90,12 +90,14 @@ export const fetchSales = () => async (dispatch) => {
 };
 
 export const addSale = (newSale) => async (dispatch) => {
+  console.log(newSale);
   try {
     dispatch({ type: LOADING });
     const response = await axios.post(
       "https://inventory-backend-rho.vercel.app/v1/api/sales/add-sale",
       { ...newSale }
     );
+    console.log(response);
     if (response.status === 200) {
       dispatch({ type: ADD_SALE, payload: response.data.data });
       toast.success("Sale added Successfully!");
