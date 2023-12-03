@@ -1,70 +1,79 @@
-# Getting Started with Create React App
+# Inventory management App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Description
+Inventory management app is a responsive webapp which provides you features to have control over your inventory items, item sales and there stock data.
 
-## Available Scripts
+## Tech stack
+1. React
+2. Redux
+3. Javascript
+4. Html
+5. Css
 
-In the project directory, you can run:
+<table>
+<tr>
+    <td>
+        <p align="center"><strong>Desktop view</strong></p>
+        <img src="https://github.com/Shreyannsh/inventory-management/assets/111145568/aabab64e-01d8-4e02-9805-a1d0cf8c326b"  />
+    </td>
+    <td>
+        <p align="center"><strong>Mobile view</strong></p>
+        <img width='400px' src="https://github.com/Shreyannsh/inventory-management/assets/111145568/954e608b-cc03-4505-ab7e-06df92633d05"  />
+    </td>
+</tr>
+</table>
 
-### `npm start`
+<table>
+<tr>
+    <td>
+        <p align="center"><strong>Desktop view</strong></p>
+        <img src="https://github.com/Shreyannsh/inventory-management/assets/111145568/66ee8365-1a20-42e5-b6de-9adde55b9ba8"  />
+    </td>
+    <td>
+        <p align="center"><strong>Mobile view</strong></p>
+        <img width='400px' src="https://github.com/Shreyannsh/inventory-management/assets/111145568/a4139ef3-7131-49a6-9a55-8b2e40d95113"  />
+    </td>
+</tr>
+</table>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Features
+1. Inventory section
+- A complete list of all available items in inventory will be listed here.
+- A new item can be added with category,price and quantity.
+- Item can be removed.
+- Item can be edited if required.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+2. Sales section
+- A complete list of all sold items will be listed here.
+- A new sale can be added.
+- Filter option is available to filter sales date wise.
 
-### `npm test`
+3. Reports section
+- Option to select two type of reports is available.
+- Inventory data and sales data
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Concepts used  
+1. Made on React
+2. Redux
+   1. createStore
+   2. Actions
+   3. Thunk
+   4. reducer
+3. React hooks
+   1. useDispatch
+   2. useSelector
+   3. useState
+   4. useEffect
+4. React Router
+5. Functional Programming
+6. CSS properties includes - Flex,Grid etc
+7. Loaders,
+8. Alerts and more...
 
-### `npm run build`
+## Snaps
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+![add sale](https://github.com/Shreyannsh/inventory-management/assets/111145568/f39b30ad-248b-4924-9922-dff0f0fa3ac6)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+![reports page](https://github.com/Shreyannsh/inventory-management/assets/111145568/e9dcf6d4-7568-4bd8-ab69-40531a9be528)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+![sales page](https://github.com/Shreyannsh/inventory-management/assets/111145568/f6a3097e-680d-4b45-b999-e04b2f9caec6)
